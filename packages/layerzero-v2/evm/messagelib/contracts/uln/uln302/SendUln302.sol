@@ -5,6 +5,8 @@ pragma solidity ^0.8.20;
 import { Packet } from "@layerzerolabs/lz-evm-protocol-v2/contracts/interfaces/ISendLib.sol";
 import { SetConfigParam } from "@layerzerolabs/lz-evm-protocol-v2/contracts/interfaces/IMessageLibManager.sol";
 
+import { Ownable } from "@openzeppelin/contracts/access/Ownable.sol";
+
 import { ExecutorConfig } from "../../SendLibBase.sol";
 import { SendLibBaseE2, WorkerOptions } from "../../SendLibBaseE2.sol";
 import { UlnConfig } from "../UlnBase.sol";
@@ -22,7 +24,7 @@ contract SendUln302 is SendUlnBase, SendLibBaseE2 {
         address _endpoint,
         uint256 _treasuryGasLimit,
         uint256 _treasuryGasForFeeCap
-    ) SendLibBaseE2(_endpoint, _treasuryGasLimit, _treasuryGasForFeeCap) {}
+    ) SendLibBaseE2(_endpoint, _treasuryGasLimit, _treasuryGasForFeeCap) Ownable(_msgSender()) {}
 
     // ============================ OnlyEndpoint ===================================
 

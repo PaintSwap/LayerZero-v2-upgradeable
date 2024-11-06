@@ -2,6 +2,8 @@
 
 pragma solidity ^0.8.20;
 
+import { Ownable } from "@openzeppelin/contracts/access/Ownable.sol";
+
 import { SafeCast } from "@openzeppelin/contracts/utils/math/SafeCast.sol";
 import { PacketV1Codec } from "@layerzerolabs/lz-evm-protocol-v2/contracts/messagelib/libs/PacketV1Codec.sol";
 
@@ -22,7 +24,7 @@ contract ReceiveUln301 is IUltraLightNode301, ReceiveUlnBase, ReceiveLibBaseE1 {
 
     error LZ_ULN_InvalidConfigType(uint256 configType);
 
-    constructor(address _endpoint, uint32 _localEid) ReceiveLibBaseE1(_endpoint, _localEid) {}
+    constructor(address _endpoint, uint32 _localEid) ReceiveLibBaseE1(_endpoint, _localEid) Ownable(_msgSender()) {}
 
     // ============================ OnlyEndpoint ===================================
 

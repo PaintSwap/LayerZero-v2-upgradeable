@@ -63,7 +63,7 @@ contract EndpointV1 is Ownable, ILayerZeroEndpoint {
         bytes reason
     );
 
-    constructor(uint16 _chainId) {
+    constructor(uint16 _chainId) Ownable(_msgSender()) {
         chainId = _chainId;
     }
 

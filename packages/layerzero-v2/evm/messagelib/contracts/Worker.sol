@@ -2,15 +2,15 @@
 
 pragma solidity ^0.8.20;
 
-import { Pausable } from "@openzeppelin/contracts/security/Pausable.sol";
-import { AccessControl } from "@openzeppelin/contracts/access/AccessControl.sol";
+import { PausableUpgradeable } from "@openzeppelin/contracts-upgradeable/utils/PausableUpgradeable.sol";
+import { AccessControlUpgradeable } from "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol";
 
 import { ISendLib } from "@layerzerolabs/lz-evm-protocol-v2/contracts/interfaces/ISendLib.sol";
 import { Transfer } from "@layerzerolabs/lz-evm-protocol-v2/contracts/libs/Transfer.sol";
 
 import { IWorker } from "./interfaces/IWorker.sol";
 
-abstract contract Worker is AccessControl, Pausable, IWorker {
+abstract contract Worker is AccessControlUpgradeable, PausableUpgradeable, IWorker {
     bytes32 internal constant MESSAGE_LIB_ROLE = keccak256("MESSAGE_LIB_ROLE");
     bytes32 internal constant ALLOWLIST = keccak256("ALLOWLIST");
     bytes32 internal constant DENYLIST = keccak256("DENYLIST");
@@ -143,7 +143,8 @@ abstract contract Worker is AccessControl, Pausable, IWorker {
     /// @dev overrides AccessControl to allow for counting of allowlistSize
     /// @param _role role to grant
     /// @param _account address to grant role to
-    function _grantRole(bytes32 _role, address _account) internal override {
+    /// @return granted is true if the role is granted
+    function _grantRole(bytes32 _role, address _account) internal override returns (bool granted) {
         if (_role == ALLOWLIST && !hasRole(_role, _account)) {
             ++allowlistSize;
         }
@@ -153,7 +154,8 @@ abstract contract Worker is AccessControl, Pausable, IWorker {
     /// @dev overrides AccessControl to allow for counting of allowlistSize
     /// @param _role role to revoke
     /// @param _account address to revoke role from
-    function _revokeRole(bytes32 _role, address _account) internal override {
+    /// @return revoked is true if the role is revoked
+    function _revokeRole(bytes32 _role, address _account) internal override returns (bool revoked) {
         if (_role == ALLOWLIST && hasRole(_role, _account)) {
             --allowlistSize;
         }

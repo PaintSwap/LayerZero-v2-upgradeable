@@ -3,6 +3,7 @@
 pragma solidity ^0.8.20;
 
 import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import { Ownable } from "@openzeppelin/contracts/access/Ownable.sol";
 
 import { MessagingFee, MessagingParams, MessagingReceipt, Origin, ILayerZeroEndpointV2 } from "./interfaces/ILayerZeroEndpointV2.sol";
 import { ISendLib, Packet } from "./interfaces/ISendLib.sol";
@@ -40,9 +41,7 @@ contract EndpointV2 is ILayerZeroEndpointV2, MessagingChannel, MessageLibManager
     mapping(address oapp => address delegate) public delegates;
 
     /// @param _eid the unique Endpoint Id for this deploy that all other Endpoints can use to send to it
-    constructor(uint32 _eid, address _owner) MessagingChannel(_eid) {
-        _transferOwnership(_owner);
-    }
+    constructor(uint32 _eid, address _owner) MessagingChannel(_eid) Ownable(_owner) {}
 
     /// @dev MESSAGING STEP 0
     /// @notice This view function gives the application built on top of LayerZero the ability to requests a quote

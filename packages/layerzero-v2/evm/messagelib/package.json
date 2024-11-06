@@ -3,15 +3,15 @@
   "private": true,
   "license": "LZBL-1.2",
   "scripts": {
-    "clean": "rimraf cache out",
     "build": "forge build",
+    "clean": "rimraf cache out",
     "test": "forge test"
   },
   "dependencies": {
     "@layerzerolabs/lz-evm-protocol-v2": "workspace:^",
     "@layerzerolabs/lz-evm-v1-0.7": "^2.0.1",
-    "@openzeppelin/contracts": "^4.8.1",
-    "@openzeppelin/contracts-upgradeable": "^4.8.1",
+    "@openzeppelin/contracts": "https://gitpkg.now.sh/PaintSwap/openzeppelin-contracts/contracts?v5.1-memory-safe",
+    "@openzeppelin/contracts-upgradeable": "https://gitpkg.now.sh/PaintSwap/openzeppelin-contracts-upgradeable/contracts?v5.1-memory-safe",
     "solidity-bytes-utils": "^0.8.0"
   },
   "devDependencies": {

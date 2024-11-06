@@ -6,6 +6,8 @@ import { Test } from "forge-std/Test.sol";
 
 import { ILayerZeroEndpoint } from "@layerzerolabs/lz-evm-v1-0.7/contracts/interfaces/ILayerZeroEndpoint.sol";
 
+import { Ownable } from "@openzeppelin/contracts/access/Ownable.sol";
+
 import { ReceiveLibBaseE1 } from "../contracts/uln/uln301/ReceiveLibBaseE1.sol";
 
 import { TokenMock } from "./mocks/TokenMock.sol";
@@ -14,7 +16,7 @@ contract ReceiveLibBaseE1Test is ReceiveLibBaseE1, Test {
     uint32 internal constant EID = 1;
     address internal constant ENDPOINT = address(0x11);
 
-    constructor() ReceiveLibBaseE1(ENDPOINT, EID) {}
+    constructor() ReceiveLibBaseE1(ENDPOINT, EID) Ownable(_msgSender()) {}
 
     function test_execute() public {
         // if the receiver is not the contract, just emit the event instead of calling the endpoint

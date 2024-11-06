@@ -30,7 +30,10 @@ contract MessageLibManagerTest is LayerZeroTest {
 
     function test_registerLibraryByNotOwner() public {
         vm.startPrank(address(0x0)); // test not owner
-        vm.expectRevert("Ownable: caller is not the owner");
+
+        bytes4 selector = bytes4(keccak256("OwnableUnauthorizedAccount(address)"));
+        vm.expectRevert(abi.encodeWithSelector(selector, address(0x0)));
+
         endpoint.registerLibrary(newMsglib);
         assertFalse(endpoint.isRegisteredLibrary(newMsglib));
     }
@@ -63,7 +66,8 @@ contract MessageLibManagerTest is LayerZeroTest {
 
     function test_setDefaultSendLibraryByNotOwner() public {
         vm.startPrank(address(0x0)); // not owner
-        vm.expectRevert("Ownable: caller is not the owner");
+        bytes4 selector = bytes4(keccak256("OwnableUnauthorizedAccount(address)"));
+        vm.expectRevert(abi.encodeWithSelector(selector, address(0x0)));
         endpoint.setDefaultSendLibrary(2, msglib);
     }
 
@@ -95,7 +99,8 @@ contract MessageLibManagerTest is LayerZeroTest {
 
     function test_setDefaultReceiveLibraryByNotOwner() public {
         vm.startPrank(address(0x0)); // not owner
-        vm.expectRevert("Ownable: caller is not the owner");
+        bytes4 selector = bytes4(keccak256("OwnableUnauthorizedAccount(address)"));
+        vm.expectRevert(abi.encodeWithSelector(selector, address(0x0)));
         endpoint.setDefaultReceiveLibrary(2, msglib, 0);
     }
 
@@ -124,7 +129,8 @@ contract MessageLibManagerTest is LayerZeroTest {
 
     function test_setDefaultReceiveLibraryTimeoutByNotOwner() public {
         vm.startPrank(address(0x0)); // not owner
-        vm.expectRevert("Ownable: caller is not the owner");
+        bytes4 selector = bytes4(keccak256("OwnableUnauthorizedAccount(address)"));
+        vm.expectRevert(abi.encodeWithSelector(selector, address(0x0)));
         endpoint.setDefaultReceiveLibraryTimeout(2, msglib, 0);
     }
 

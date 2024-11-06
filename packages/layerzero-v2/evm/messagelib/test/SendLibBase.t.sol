@@ -4,6 +4,8 @@ pragma solidity ^0.8.0;
 
 import "forge-std/Test.sol";
 
+import { Ownable } from "@openzeppelin/contracts/access/Ownable.sol";
+
 import { SendLibBase, WorkerOptions, ExecutorConfig, SetDefaultExecutorConfigParam } from "../contracts/SendLibBase.sol";
 import { ILayerZeroExecutor } from "../contracts/interfaces/ILayerZeroExecutor.sol";
 import { ILayerZeroTreasury } from "../contracts/interfaces/ILayerZeroTreasury.sol";
@@ -18,7 +20,7 @@ contract SendLibBaseTest is Test, SendLibBase {
     address internal constant EXECUTOR = address(0x5678);
     uint256 internal constant OTHER_WORKER_FEE = 100;
 
-    constructor() SendLibBase(ENDPOINT, LOCAL_EID, type(uint256).max, 0) {
+    constructor() SendLibBase(ENDPOINT, LOCAL_EID, type(uint256).max, 0) Ownable(_msgSender()) {
         treasury = address(0xdead);
     }
 

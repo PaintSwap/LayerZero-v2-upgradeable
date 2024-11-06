@@ -2,6 +2,7 @@
 pragma solidity ^0.8.0;
 
 import { SimpleMessageLib } from "@layerzerolabs/lz-evm-protocol-v2/contracts/messagelib/SimpleMessageLib.sol";
+import { Ownable } from "@openzeppelin/contracts/access/Ownable.sol";
 
 import { TestHelper } from "../TestHelper.sol";
 

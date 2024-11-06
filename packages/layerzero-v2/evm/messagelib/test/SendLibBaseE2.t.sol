@@ -4,6 +4,7 @@ pragma solidity ^0.8.0;
 
 import { Test } from "forge-std/Test.sol";
 import { IERC165 } from "@openzeppelin/contracts/utils/introspection/IERC165.sol";
+import { Ownable } from "@openzeppelin/contracts/access/Ownable.sol";
 
 import { Packet } from "@layerzerolabs/lz-evm-protocol-v2/contracts/interfaces/ISendLib.sol";
 import { IMessageLib } from "@layerzerolabs/lz-evm-protocol-v2/contracts/interfaces/IMessageLib.sol";
@@ -115,7 +116,7 @@ contract SendLibBaseE2Test is Test {
 }
 
 contract SendLibBaseE2Mock is SendLibBaseE2 {
-    constructor(address _endpoint) SendLibBaseE2(_endpoint, type(uint256).max, 0) {}
+    constructor(address _endpoint) SendLibBaseE2(_endpoint, type(uint256).max, 0) Ownable(_msgSender()) {}
 
     function setConfig(address, SetConfigParam[] calldata) external {}
 

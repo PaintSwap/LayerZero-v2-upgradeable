@@ -746,8 +746,8 @@ __metadata:
     "@chainlink/contracts-ccip": "npm:^0.7.6"
     "@layerzerolabs/lz-evm-protocol-v2": "workspace:^"
     "@layerzerolabs/lz-evm-v1-0.7": "npm:^2.0.1"
-    "@openzeppelin/contracts": "npm:^4.8.1"
-    "@openzeppelin/contracts-upgradeable": "npm:^4.8.1"
+    "@openzeppelin/contracts": "https://gitpkg.now.sh/PaintSwap/openzeppelin-contracts/contracts?v5.1-memory-safe"
+    "@openzeppelin/contracts-upgradeable": "https://gitpkg.now.sh/PaintSwap/openzeppelin-contracts-upgradeable/contracts?v5.1-memory-safe"
     hardhat-deploy: "npm:^0.11.44"
     rimraf: "npm:^5.0.5"
     solidity-bytes-utils: "npm:^0.8.0"
@@ -761,8 +761,8 @@ __metadata:
     "@layerzerolabs/lz-evm-messagelib-v2": "workspace:^"
     "@layerzerolabs/lz-evm-protocol-v2": "workspace:^"
     "@layerzerolabs/lz-evm-v1-0.7": "npm:^2.0.1"
-    "@openzeppelin/contracts": "npm:^4.8.1"
-    "@openzeppelin/contracts-upgradeable": "npm:^4.8.1"
+    "@openzeppelin/contracts": "https://gitpkg.now.sh/PaintSwap/openzeppelin-contracts/contracts?v5.1-memory-safe"
+    "@openzeppelin/contracts-upgradeable": "https://gitpkg.now.sh/PaintSwap/openzeppelin-contracts-upgradeable/contracts?v5.1-memory-safe"
     hardhat-deploy: "npm:^0.11.44"
     rimraf: "npm:^5.0.5"
     solidity-bytes-utils: "npm:^0.8.0"
@@ -775,8 +775,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@layerzerolabs/lz-evm-protocol-v2@workspace:packages/layerzero-v2/evm/protocol"
   dependencies:
-    "@openzeppelin/contracts": "npm:^4.8.1"
-    "@openzeppelin/contracts-upgradeable": "npm:^4.8.1"
+    "@openzeppelin/contracts": "https://gitpkg.now.sh/PaintSwap/openzeppelin-contracts/contracts?v5.1-memory-safe"
+    "@openzeppelin/contracts-upgradeable": "https://gitpkg.now.sh/PaintSwap/openzeppelin-contracts-upgradeable/contracts?v5.1-memory-safe"
     hardhat-deploy: "npm:^0.11.44"
     rimraf: "npm:^5.0.5"
     solidity-bytes-utils: "npm:^0.8.0"
@@ -1188,10 +1188,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@openzeppelin/contracts-upgradeable@npm:^4.8.1":
-  version: 4.9.5
-  resolution: "@openzeppelin/contracts-upgradeable@npm:4.9.5"
-  checksum: 9a0d137bff231b60ca30840aea225f9baf1d8bf5f229d21d64c67af3793fd381d9dae9b66536ea8c156e46354d8d5b1d4141d33434892ba989f056c972f9e731
+"@openzeppelin/contracts-upgradeable@https://gitpkg.now.sh/PaintSwap/openzeppelin-contracts-upgradeable/contracts?v5.1-memory-safe":
+  version: 5.1.0
+  resolution: "@openzeppelin/contracts-upgradeable@https://gitpkg.now.sh/PaintSwap/openzeppelin-contracts-upgradeable/contracts?v5.1-memory-safe"
+  peerDependencies:
+    "@openzeppelin/contracts": 5.1.0
+  checksum: 6034326bcbe467f324d23ea6b81e7b132f435a4dd87884f6ecc3856625b245ef38dabd91ed3beaec7bd61e84b1c3d9d2053c03b2a657c780f9d9af7ea2520099
   languageName: node
   linkType: hard
 
@@ -1202,10 +1204,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@openzeppelin/contracts@npm:^4.8.1":
-  version: 4.9.5
-  resolution: "@openzeppelin/contracts@npm:4.9.5"
-  checksum: f221d91a7dd96f9187aa832f8a160d673feb2904711bd210fab56ccfd8b8351b8150b4f0bd247701f7d4adddceba83943c049c6da11d126e07164b9abff767e0
+"@openzeppelin/contracts@https://gitpkg.now.sh/PaintSwap/openzeppelin-contracts/contracts?v5.1-memory-safe":
+  version: 5.1.0
+  resolution: "@openzeppelin/contracts@https://gitpkg.now.sh/PaintSwap/openzeppelin-contracts/contracts?v5.1-memory-safe"
+  checksum: 25e0dd7ed2ac26253f8b94118e1b3ad68b971a3047bebc7107a11b0526575afacf4691ef0c34629cd9f0ba1236180b9650dd38c9e70f457488e04d81e24ab650
   languageName: node
   linkType: hard
 

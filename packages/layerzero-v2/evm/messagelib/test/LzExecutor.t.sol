@@ -209,7 +209,8 @@ contract LzExecutorTest is Test, ILayerZeroReceiver {
         vm.deal(address(lzExecutor), 1000);
         assertEq(address(lzExecutor).balance, 1000);
 
-        vm.expectRevert("Ownable: caller is not the owner");
+        bytes4 selector = bytes4(keccak256("OwnableUnauthorizedAccount(address)"));
+        vm.expectRevert(abi.encodeWithSelector(selector, alice));
         vm.prank(alice);
         lzExecutor.withdrawNative(alice, 1000);
     }

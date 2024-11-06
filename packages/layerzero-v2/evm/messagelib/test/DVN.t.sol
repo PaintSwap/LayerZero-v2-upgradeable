@@ -43,6 +43,9 @@ contract DVNTest is Test {
     address internal bob = address(0x2);
     address internal charlie = address(0x3);
 
+    bytes4 selectorAccessControlUnauthorizedAccount =
+        bytes4(keccak256("AccessControlUnauthorizedAccount(address,bytes32)"));
+
     function setUp() public {
         fixtureV2 = Setup.loadFixtureV2(Constant.EID_ETHEREUM);
         dvn = fixtureV2.dvn;
@@ -59,14 +62,8 @@ contract DVNTest is Test {
     }
 
     function test_Revert_SetAdmin_NotByAdmin() public {
-        vm.expectRevert(
-            abi.encodePacked(
-                "AccessControl: account ",
-                Strings.toHexString(bob),
-                " is missing role ",
-                Strings.toHexString(uint256(ADMIN_ROLE), 32)
-            )
-        );
+        vm.expectRevert(abi.encodeWithSelector(selectorAccessControlUnauthorizedAccount, address(bob), ADMIN_ROLE));
+
         vm.prank(bob);
         dvn.grantRole(ADMIN_ROLE, alice); // bob is not admin, so it cannot set others to be admin
     }
@@ -205,49 +202,24 @@ contract DVNTest is Test {
     }
 
     function test_Revert_GrantRevokeRole_ADMIN_NotByAdmin() public {
-        vm.expectRevert(
-            abi.encodePacked(
-                "AccessControl: account ",
-                Strings.toHexString(bob),
-                " is missing role ",
-                Strings.toHexString(uint256(ADMIN_ROLE), 32)
-            )
-        );
+        vm.expectRevert(abi.encodeWithSelector(selectorAccessControlUnauthorizedAccount, address(bob), ADMIN_ROLE));
+
         vm.prank(bob);
         dvn.grantRole(ADMIN_ROLE, alice);
 
-        vm.expectRevert(
-            abi.encodePacked(
-                "AccessControl: account ",
-                Strings.toHexString(bob),
-                " is missing role ",
-                Strings.toHexString(uint256(ADMIN_ROLE), 32)
-            )
-        );
+        vm.expectRevert(abi.encodeWithSelector(selectorAccessControlUnauthorizedAccount, address(bob), ADMIN_ROLE));
+
         vm.prank(bob);
         dvn.revokeRole(ADMIN_ROLE, alice);
     }
 
     function test_Revert_GrantRevokeRole_ADMIN_IfSelf() public {
-        vm.expectRevert(
-            abi.encodePacked(
-                "AccessControl: account ",
-                Strings.toHexString(address(dvn)),
-                " is missing role ",
-                Strings.toHexString(uint256(ADMIN_ROLE), 32)
-            )
-        );
+        vm.expectRevert(abi.encodeWithSelector(selectorAccessControlUnauthorizedAccount, address(dvn), ADMIN_ROLE));
+
         vm.prank(address(dvn));
         dvn.grantRole(ADMIN_ROLE, alice);
 
-        vm.expectRevert(
-            abi.encodePacked(
-                "AccessControl: account ",
-                Strings.toHexString(address(dvn)),
-                " is missing role ",
-                Strings.toHexString(uint256(ADMIN_ROLE), 32)
-            )
-        );
+        vm.expectRevert(abi.encodeWithSelector(selectorAccessControlUnauthorizedAccount, address(dvn), ADMIN_ROLE));
         vm.prank(address(dvn));
         dvn.revokeRole(ADMIN_ROLE, alice);
     }

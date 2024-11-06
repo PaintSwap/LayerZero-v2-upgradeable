@@ -2,7 +2,7 @@
 
 pragma solidity ^0.8.20;
 
-import { PausableUpgradeable } from "@openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol";
+import { PausableUpgradeable } from "@openzeppelin/contracts-upgradeable/utils/PausableUpgradeable.sol";
 import { AccessControlUpgradeable } from "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol";
 import { Initializable } from "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 
@@ -155,17 +155,19 @@ abstract contract WorkerUpgradeable is Initializable, AccessControlUpgradeable, 
     /// @dev overrides AccessControl to allow for counting of allowlistSize
     /// @param _role role to grant
     /// @param _account address to grant role to
-    function _grantRole(bytes32 _role, address _account) internal override {
+    /// @return granted is true if the role is granted
+    function _grantRole(bytes32 _role, address _account) internal override returns (bool granted) {
         if (_role == ALLOWLIST && !hasRole(_role, _account)) {
             ++allowlistSize;
         }
-        super._grantRole(_role, _account);
+        return super._grantRole(_role, _account);
     }
 
     /// @dev overrides AccessControl to allow for counting of allowlistSize
     /// @param _role role to revoke
     /// @param _account address to revoke role from
-    function _revokeRole(bytes32 _role, address _account) internal override {
+    /// @return revoked if the role is revoked
+    function _revokeRole(bytes32 _role, address _account) internal override returns (bool revoked) {
         if (_role == ALLOWLIST && hasRole(_role, _account)) {
             --allowlistSize;
         }

@@ -18,9 +18,7 @@ contract ProxyAdmin is Ownable {
     error ImplementationCallFailed();
     error AdminCallFailed();
 
-    constructor(address initialOwner) {
-        _transferOwnership(initialOwner);
-    }
+    constructor(address initialOwner) Ownable(initialOwner) {}
 
     /**
      * @dev Returns the current implementation of `proxy`.

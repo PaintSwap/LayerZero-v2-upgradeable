@@ -4,6 +4,8 @@ pragma solidity ^0.8.0;
 
 import { Test } from "forge-std/Test.sol";
 
+import { Ownable } from "@openzeppelin/contracts/access/Ownable.sol";
+
 import { ILayerZeroEndpoint } from "@layerzerolabs/lz-evm-v1-0.7/contracts/interfaces/ILayerZeroEndpoint.sol";
 import { Packet } from "@layerzerolabs/lz-evm-protocol-v2/contracts/interfaces/ISendLib.sol";
 
@@ -19,7 +21,10 @@ contract SendLibBaseE1Test is SendLibBaseE1, Test {
     address internal constant TREASURY_FEE_HANDLER = address(0x33);
     address internal constant EXECUTOR = address(0x44);
 
-    constructor() SendLibBaseE1(ENDPOINT, type(uint256).max, 0, NONCE_CONTRACT, EID, TREASURY_FEE_HANDLER) {}
+    constructor()
+        SendLibBaseE1(ENDPOINT, type(uint256).max, 0, NONCE_CONTRACT, EID, TREASURY_FEE_HANDLER)
+        Ownable(_msgSender())
+    {}
 
     function test_withdrawFee() public {
         // mock alice has 1000 native fee

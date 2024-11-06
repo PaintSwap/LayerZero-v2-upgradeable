@@ -4,11 +4,15 @@ pragma solidity ^0.8.0;
 
 import { Test } from "forge-std/Test.sol";
 
+import { Ownable } from "@openzeppelin/contracts/access/Ownable.sol";
+
 import { UlnBase, UlnConfig, SetDefaultUlnConfigParam } from "../contracts/uln/UlnBase.sol";
 import { Constant } from "./util/Constant.sol";
 
 contract UlnBaseTest is Test, UlnBase {
     address private constant DEFAULT_CONFIG = address(0x0);
+
+    constructor() Ownable(_msgSender()) {}
 
     function test_setInvalidDefaultUlnConfig() public {
         vm.startPrank(owner());

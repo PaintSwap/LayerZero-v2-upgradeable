@@ -16,7 +16,7 @@ contract ExecutorFeeLib is Ownable, IExecutorFeeLib {
 
     uint256 private immutable nativeDecimalsRate;
 
-    constructor(uint256 _nativeDecimalsRate) {
+    constructor(uint256 _nativeDecimalsRate) Ownable(_msgSender()){
         nativeDecimalsRate = _nativeDecimalsRate;
     }
 
