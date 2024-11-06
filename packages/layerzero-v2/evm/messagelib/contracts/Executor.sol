@@ -130,13 +130,13 @@ contract Executor is WorkerUpgradeable, ReentrancyGuardUpgradeable, Proxied, IEx
 
     function execute302(ExecutionParams calldata _executionParams) external payable onlyRole(ADMIN_ROLE) nonReentrant {
         try
-        ILayerZeroEndpointV2(endpoint).lzReceive{ value: msg.value, gas: _executionParams.gasLimit }(
-            _executionParams.origin,
-            _executionParams.receiver,
-            _executionParams.guid,
-            _executionParams.message,
-            _executionParams.extraData
-        )
+            ILayerZeroEndpointV2(endpoint).lzReceive{ value: msg.value, gas: _executionParams.gasLimit }(
+                _executionParams.origin,
+                _executionParams.receiver,
+                _executionParams.guid,
+                _executionParams.message,
+                _executionParams.extraData
+            )
         {
             // do nothing
         } catch (bytes memory reason) {
@@ -163,14 +163,14 @@ contract Executor is WorkerUpgradeable, ReentrancyGuardUpgradeable, Proxied, IEx
         uint256 _gasLimit
     ) external payable onlyRole(ADMIN_ROLE) nonReentrant {
         try
-        ILayerZeroEndpointV2(endpoint).lzCompose{ value: msg.value, gas: _gasLimit }(
-            _from,
-            _to,
-            _guid,
-            _index,
-            _message,
-            _extraData
-        )
+            ILayerZeroEndpointV2(endpoint).lzCompose{ value: msg.value, gas: _gasLimit }(
+                _from,
+                _to,
+                _guid,
+                _index,
+                _message,
+                _extraData
+            )
         {
             // do nothing
         } catch (bytes memory reason) {
@@ -203,13 +203,13 @@ contract Executor is WorkerUpgradeable, ReentrancyGuardUpgradeable, Proxied, IEx
 
         uint256 value = msg.value - spent;
         try
-        ILayerZeroEndpointV2(endpoint).lzReceive{ value: value, gas: _executionParams.gasLimit }(
-            _executionParams.origin,
-            _executionParams.receiver,
-            _executionParams.guid,
-            _executionParams.message,
-            _executionParams.extraData
-        )
+            ILayerZeroEndpointV2(endpoint).lzReceive{ value: value, gas: _executionParams.gasLimit }(
+                _executionParams.origin,
+                _executionParams.receiver,
+                _executionParams.guid,
+                _executionParams.message,
+                _executionParams.extraData
+            )
         {
             // do nothing
         } catch (bytes memory reason) {
