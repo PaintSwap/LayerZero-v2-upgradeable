@@ -1,5 +1,6 @@
 {
   "name": "@layerzerolabs/lz-evm-protocol-v2",
+  "version": "3.0.11u",
   "private": true,
   "license": "LZBL-1.2",
   "scripts": {

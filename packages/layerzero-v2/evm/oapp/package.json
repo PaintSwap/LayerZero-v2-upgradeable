@@ -1,5 +1,6 @@
 {
   "name": "@layerzerolabs/lz-evm-oapp-v2",
+  "version": "3.0.11u",
   "private": true,
   "license": "MIT",
   "scripts": {
