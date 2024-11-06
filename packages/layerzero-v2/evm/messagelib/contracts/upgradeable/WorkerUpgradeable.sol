@@ -171,7 +171,7 @@ abstract contract WorkerUpgradeable is Initializable, AccessControlUpgradeable, 
         if (_role == ALLOWLIST && hasRole(_role, _account)) {
             --allowlistSize;
         }
-        super._revokeRole(_role, _account);
+        return super._revokeRole(_role, _account);
     }
 
     /// @dev overrides AccessControl to disable renouncing of roles

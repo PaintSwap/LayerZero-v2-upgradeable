@@ -148,7 +148,7 @@ abstract contract Worker is AccessControlUpgradeable, PausableUpgradeable, IWork
         if (_role == ALLOWLIST && !hasRole(_role, _account)) {
             ++allowlistSize;
         }
-        super._grantRole(_role, _account);
+        return super._grantRole(_role, _account);
     }
 
     /// @dev overrides AccessControl to allow for counting of allowlistSize
@@ -159,7 +159,7 @@ abstract contract Worker is AccessControlUpgradeable, PausableUpgradeable, IWork
         if (_role == ALLOWLIST && hasRole(_role, _account)) {
             --allowlistSize;
         }
-        super._revokeRole(_role, _account);
+        return super._revokeRole(_role, _account);
     }
 
     /// @dev overrides AccessControl to disable renouncing of roles
