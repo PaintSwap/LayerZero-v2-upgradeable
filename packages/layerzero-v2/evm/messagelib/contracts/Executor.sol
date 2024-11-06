@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: LZBL-1.2
 
-pragma solidity ^0.8.20;
+pragma solidity ^0.8.28;
 
 import { ReentrancyGuardUpgradeable } from "@openzeppelin/contracts-upgradeable/utils/ReentrancyGuardUpgradeable.sol";
 import { Proxied } from "hardhat-deploy/solc_0.8/proxy/Proxied.sol";
